@@ -16,7 +16,7 @@ body {
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
-  background: #111;
+  background: #0d0d0d;
   color: #f5f5f5;
 }
 
@@ -25,7 +25,7 @@ body {
 }
 
 .app-root {
-  background: radial-gradient(circle at top, #222 0, #111 55%);
+  background: #0d0d0d;
   color: #f5f5f5;
 }
 
@@ -48,7 +48,7 @@ body {
   justify-content: space-between;
   padding: 10px 24px;
   border-radius: 999px;
-  background: rgba(20, 20, 20, 0.7);
+  background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.04);
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(14px);
@@ -163,9 +163,71 @@ body {
   border-radius: 999px;
 }
 
+/* Scroll-down indicator under hero */
+
+.scroll-indicator {
+  margin: 40px auto 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #aaaaaa;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.scroll-indicator:hover {
+  opacity: 1;
+  color: #f6e2a6;
+}
+
+.scroll-arrow {
+  font-size: 1.8rem;
+  animation: scroll-bounce 1.6s infinite;
+}
+
+@keyframes scroll-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(6px);
+    opacity: 1;
+  }
+}
+
 /* ---------- WORKS SECTION ---------- */
 .works-section {
   margin-top: 40px;
+}
+
+.project-card {
+  position: relative;
+  margin-bottom: 48px;
+  border-radius: 24px;
+  padding: 1px;
+  background: radial-gradient(
+    circle at top,
+    rgba(250, 210, 140, 0.25),
+    transparent 60%
+  );
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.7);
+  transition: box-shadow 0.25s ease, background 0.25s ease, transform 0.25s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  background: radial-gradient(
+    circle at top,
+    rgba(250, 210, 140, 0.4),
+    transparent 65%
+  );
+  box-shadow: 0 26px 60px rgba(0, 0, 0, 0.85);
 }
 
 .project-row {
@@ -173,7 +235,16 @@ body {
   align-items: stretch;
   justify-content: space-between;
   gap: 40px;
-  margin-bottom: 64px;
+  margin-bottom: 0;
+  border-radius: 22px;
+  padding: 24px;
+  background: radial-gradient(
+    circle at top left,
+    #191919 0,
+    #101010 55%,
+    #050505 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .project-row-reverse {
@@ -187,14 +258,11 @@ body {
   box-shadow: 0 18px 45px rgba(0, 0, 0, 0.7);
 }
 
-.placeholder-image {
-  background: linear-gradient(135deg, #333 0%, #222 45%, #111 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 220px;
-  color: #bbbbbb;
-  font-size: 0.9rem;
+.project-img-el {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .project-text {
@@ -244,4 +312,70 @@ body {
   .nav {
     border-radius: 16px;
   }
+}
+
+/* ---- ABOUT / HERO ---- */
+
+.about-layout {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+}
+
+.about-text {
+  max-width: 520px;
+}
+
+.about-graphic {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-image {
+  width: 100%;
+  max-width: 480px; /* adjust if you want bigger/smaller */
+  height: auto;
+  display: block;
+}
+
+/* mobile */
+@media (max-width: 900px) {
+  .about-layout {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero-image {
+    max-width: 320px;
+    margin-top: 20px;
+  }
+}
+
+.hero-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.hero-image {
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  display: block;
+}
+
+/* Magnifying lens */
+.hero-magnifier {
+  position: absolute;
+  width: 160px; /* lens size */
+  height: 160px;
+  border-radius: 50%;
+  pointer-events: none;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
+  transform: translate(-50%, -50%);
+  background-repeat: no-repeat;
+  overflow: hidden;
 }

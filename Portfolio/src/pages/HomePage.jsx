@@ -1,8 +1,81 @@
+// src/pages/HomePage.jsx
+import { useLayoutEffect, useRef, useState } from "react";
+import gsap from "gsap";
+
+import SelectedWorks from "../components/SelectedWorks";
+import heroImg from "../assets/Hero_Image.png";
+
 export default function HomePage() {
+  const heroRef = useRef(null); // wrapper for GSAP + magnifier
+
+  const [isHovering, setIsHovering] = useState(false);
+  const [lensStyle, setLensStyle] = useState({});
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      // HERO FADE + SCALE IN
+      gsap.fromTo(
+        heroRef.current,
+        { opacity: 0, scale: 0.5 },
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 1.2,
+          ease: "power3.out",
+        }
+      );
+
+      // HERO ORGANIC FLOAT (x + y drift)
+      gsap.to(heroRef.current, {
+        x: () => gsap.utils.random(-12, 12),
+        y: () => gsap.utils.random(-12, 12),
+        duration: 3,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+    });
+
+    return () => ctx.revert();
+  }, []);
+
+  const handleHeroMove = (e) => {
+    const wrapper = heroRef.current;
+    if (!wrapper) return;
+
+    const rect = wrapper.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const zoom = 2;
+    const lensSize = 160;
+    const lensRadius = lensSize / 2;
+
+    setLensStyle({
+      left: x,
+      top: y,
+      width: lensSize,
+      height: lensSize,
+      backgroundImage: `url(${heroImg})`,
+      backgroundSize: `${rect.width * zoom}px ${rect.height * zoom}px`,
+      backgroundPosition: `${-(x * zoom - lensRadius)}px ${-(
+        y * zoom -
+        lensRadius
+      )}px`,
+    });
+  };
+
+  const scrollToWork = () => {
+    const el = document.getElementById("selected-works"); // <- match section id
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return (
     <main className="page">
       {/* ABOUT ME SECTION */}
-      <section className="section about-section">
+      <section id="about" className="section about-section">
         <div className="content-container about-layout">
           <div className="about-text">
             <h1 className="section-title">ABOUT ME</h1>
@@ -16,86 +89,35 @@ export default function HomePage() {
           </div>
 
           <div className="about-graphic">
-            {/* Placeholder for your circular skill graphic */}
-            <div className="about-circle">
-              <span className="about-circle-label">Skills Graphic</span>
+            <div
+              className="hero-wrapper"
+              ref={heroRef}
+              onMouseEnter={() => setIsHovering(true)}
+              onMouseLeave={() => setIsHovering(false)}
+              onMouseMove={handleHeroMove}
+            >
+              <img
+                src={heroImg}
+                alt="Bibhas skills hero"
+                className="hero-image"
+              />
+
+              {isHovering && (
+                <div className="hero-magnifier" style={lensStyle} />
+              )}
             </div>
           </div>
         </div>
-      </section>
 
-      {/* SELECTED WORKS SECTION */}
-      <section className="section works-section">
-        <div className="content-container">
-          <h2 className="section-title section-title-centered">
-            SELECTED WORKS
-          </h2>
-
-          {/* PROJECT 1 – THE HIVE (image left, text right) */}
-          <div className="project-row">
-            <div className="project-image placeholder-image">
-              {/* replace with <img src="..." alt="The Hive" /> later */}
-              <span>THE HIVE – Video Still</span>
-            </div>
-            <div className="project-text">
-              <h3 className="project-title">THE HIVE</h3>
-              <p className="body-text">
-                Video project highlighting what THE HIVE @ ALTEC represents as a
-                collaborative community space.
-              </p>
-              <p className="meta-line">
-                <span className="meta-label">Year:</span> 2025
-              </p>
-              <p className="meta-line">
-                <span className="meta-label">Role:</span> Video Producer
-              </p>
-            </div>
-          </div>
-
-          {/* PROJECT 2 – PRIME VIDEO (text left, image right) */}
-          <div className="project-row project-row-reverse">
-            <div className="project-image placeholder-image">
-              <span>Prime Video – Concept</span>
-            </div>
-            <div className="project-text">
-              <h3 className="project-title">PRIME VIDEO</h3>
-              <p className="body-text">
-                A redesign concept exploring how Prime Video could increase
-                retention by transforming the platform from a passive watching
-                experience into a more interactive and community-driven space.
-              </p>
-              <p className="meta-line">
-                <span className="meta-label">Year:</span> 2025
-              </p>
-              <p className="meta-line">
-                <span className="meta-label">Role:</span> UI/UX Designer
-              </p>
-            </div>
-          </div>
-
-          {/* PROJECT 3 – CRAFTERNOON (image left, text right) */}
-          <div className="project-row">
-            <div className="project-image placeholder-image">
-              <span>Crafternoon – Poster</span>
-            </div>
-            <div className="project-text">
-              <h3 className="project-title">CRAFTERNOON</h3>
-              <p className="body-text">
-                Poster design created for the annual ALTEC event at the
-                University of Colorado Boulder. The event promotes cultural
-                awareness through fun, hands-on crafting and language
-                activities.
-              </p>
-              <p className="meta-line">
-                <span className="meta-label">Year:</span> 2025
-              </p>
-              <p className="meta-line">
-                <span className="meta-label">Role:</span> Graphic Designer
-              </p>
-            </div>
-          </div>
+        {/* Scroll-down indicator */}
+        <div className="scroll-indicator" onClick={scrollToWork}>
+          <span className="scroll-label">SCROLL DOWN</span>
+          <span className="scroll-arrow">↓</span>
         </div>
       </section>
+
+      {/* SELECTED WORKS (data-driven + animated) */}
+      <SelectedWorks />
     </main>
   );
 }
