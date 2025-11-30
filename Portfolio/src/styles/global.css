@@ -1,0 +1,247 @@
+/* ---------- RESET ---------- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ---------- ROOT ---------- */
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  background: #111;
+  color: #f5f5f5;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.app-root {
+  background: radial-gradient(circle at top, #222 0, #111 55%);
+  color: #f5f5f5;
+}
+
+/* ---------- NAVBAR ---------- */
+.nav-wrapper {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  padding: 12px 0;
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.35), transparent);
+}
+
+.nav {
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+  border-radius: 999px;
+  background: rgba(20, 20, 20, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(14px);
+}
+
+.nav-left,
+.nav-right {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+
+.nav-center {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+}
+
+.nav-brand {
+  font-size: 1.05rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #f4f1ea;
+}
+
+.nav-link {
+  border: none;
+  background: transparent;
+  color: #dddddd;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 4px 0;
+}
+
+.nav-link:hover {
+  color: #f6e2a6;
+}
+
+/* ---------- PAGE LAYOUT ---------- */
+.page {
+  padding: 80px 16px 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 96px;
+}
+
+.content-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ---------- ABOUT SECTION ---------- */
+.about-layout {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+}
+
+.about-text {
+  max-width: 520px;
+}
+
+.section-title {
+  font-family: "Playfair Display", "Times New Roman", serif;
+  font-size: 3rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  color: #f4f1ea;
+  text-shadow: 0 0 22px rgba(212, 160, 72, 0.5);
+}
+
+.section-title-centered {
+  text-align: center;
+  margin-bottom: 52px;
+}
+
+.body-text {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #d0d0d0;
+}
+
+.about-graphic {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.about-circle {
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(circle at top, #f4c477 0, #c07d30 45%, #111 100%);
+  box-shadow: 0 0 35px rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.about-circle-label {
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #111;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+/* ---------- WORKS SECTION ---------- */
+.works-section {
+  margin-top: 40px;
+}
+
+.project-row {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: 64px;
+}
+
+.project-row-reverse {
+  flex-direction: row-reverse;
+}
+
+.project-image {
+  flex: 1.1;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.7);
+}
+
+.placeholder-image {
+  background: linear-gradient(135deg, #333 0%, #222 45%, #111 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+  color: #bbbbbb;
+  font-size: 0.9rem;
+}
+
+.project-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 480px;
+}
+
+.project-title {
+  font-family: "Playfair Display", "Times New Roman", serif;
+  font-size: 1.4rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #f4f1ea;
+  margin-bottom: 10px;
+}
+
+.meta-line {
+  font-size: 0.85rem;
+  color: #c4c4c4;
+  margin-top: 4px;
+}
+
+.meta-label {
+  font-weight: 600;
+  margin-right: 4px;
+}
+
+/* ---------- SIMPLE RESPONSIVE BEHAVIOR ---------- */
+@media (max-width: 900px) {
+  .about-layout {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .project-row,
+  .project-row-reverse {
+    flex-direction: column;
+  }
+
+  .project-text {
+    max-width: 100%;
+  }
+
+  .nav {
+    border-radius: 16px;
+  }
+}
