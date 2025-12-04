@@ -49,6 +49,22 @@ export default function ProjectDetail() {
               </div>
             </div>
           )}
+
+          {/* LOCAL VIDEO SECTION */}
+          {project.videoFile && (
+            <div style={{ marginTop: "32px", marginBottom: "32px" }}>
+              <video
+                controls
+                src={project.videoFile}
+                style={{
+                  width: "100%",
+                  maxWidth: "720px",
+                  borderRadius: "12px",
+                  boxShadow: "0 10px 35px rgba(0, 0, 0, 0.45)",
+                }}
+              />
+            </div>
+          )}
         </div>
       </section>
     </main>

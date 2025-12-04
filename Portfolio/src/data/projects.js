@@ -17,7 +17,8 @@ export const projects = [
     featured: true, // show on homepage
     description:
       "Video project highlighting what THE HIVE @ ALTEC represents as a collaborative community space.",
-    detailDescription: "Longer case-study style text...",
+    detailDescription:
+      "The HIVE is a community space located @ALTEC that goes beyond learning. A place where languages connect us, cultures come alive, and people grow together.",
     imageAlt: "Video still from The HIVE project",
     image: hiveImg,
   },
