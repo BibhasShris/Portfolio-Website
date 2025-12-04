@@ -1,7 +1,8 @@
 import hiveImg from "../assets/The_HIVE.png";
 import primeImg from "../assets/Prime_Video.png";
-import craftImg from "../assets/Crafternoon.png";
+import crafternoonImg from "../assets/Crafternoon.png";
 import funkyImg from "../assets/Funky_Buddha.jpg";
+import matchdayImg from "../assets/Matchday_Poster.png";
 
 export const projects = [
   {
@@ -11,6 +12,7 @@ export const projects = [
     year: 2025,
     role: "Video Producer",
     category: "videography",
+    featured: true, // show on homepage
     description:
       "Video project highlighting what THE HIVE @ ALTEC represents as a collaborative community space.",
     imageAlt: "Video still from The HIVE project",
@@ -23,9 +25,10 @@ export const projects = [
     year: 2025,
     role: "UI/UX Designer",
     category: "uiux",
+    featured: true,
     description:
-      "A redesign concept exploring how Prime Video could increase retention by transforming the platform into a more interactive and community-driven space.",
-    imageAlt: "Prime Video case study",
+      "A redesign concept exploring how Prime Video could increase retention by transforming the platform from a passive watching experience into a more interactive and community-driven space.",
+    imageAlt: "Prime Video case study thumbnail",
     image: primeImg,
   },
   {
@@ -35,10 +38,11 @@ export const projects = [
     year: 2025,
     role: "Graphic Designer",
     category: "graphic",
+    featured: true,
     description:
-      "Poster design created for the annual ALTEC event at the University of Colorado Boulder. The event promotes cultural awareness through hands-on crafting and language activities.",
+      "Poster design created for the annual ALTEC event at the University of Colorado Boulder. The event promotes cultural awareness through fun, hands-on crafting and language activities.",
     imageAlt: "Crafternoon event poster",
-    image: craftImg,
+    image: crafternoonImg,
   },
   {
     id: "funky-buddha",
@@ -47,9 +51,23 @@ export const projects = [
     year: 2025,
     role: "Photographer & Photo Editor",
     category: "photography",
+    featured: true,
     description:
-      "Photoshoot for The Funky Buddha Bar & Restaurant in Denver, CO. Captured interior, food, and ambiance photography for marketing and menu content. Delivered high-quality images optimized for both print and digital platforms, with enhanced color grading and retouching done in Lightroom and Photoshop.",
-    imageAlt: "Funky Buddha Bar & Restaurant photoshoot",
+      "Photoshoot for The Funky Buddha Bar & Restaurant in Denver, CO. Captured interior, food, and ambiance photography for marketing and menu content.",
+    imageAlt: "Funky Buddha bar and restaurant photoshoot",
     image: funkyImg,
+  },
+  {
+    id: "matchday-poster",
+    title: "Matchday Poster",
+    type: "Graphic Design",
+    year: 2025,
+    role: "Graphic Designer",
+    category: "graphic",
+    featured: false, //don't show on homepage
+    description:
+      "Designed a matchday poster for the championship match of the 4th TPLA Cup, featuring Colorado Nepali Youth Club (CNYC) vs. Young Star.",
+    imageAlt: "Matchday poster for the 4th TPLA Cup",
+    image: matchdayImg,
   },
 ];

@@ -1,4 +1,3 @@
-// src/components/SelectedWorks.jsx
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -23,7 +22,7 @@ export default function SelectedWorks() {
         },
       });
 
-      // 👇 PROJECT CARD ANIMATIONS (your existing logic)
+      // 👇 PROJECT CARD ANIMATIONS
       gsap.utils.toArray(".project-card").forEach((card, index) => {
         gsap.from(card, {
           opacity: 0,
@@ -43,6 +42,9 @@ export default function SelectedWorks() {
     return () => ctx.revert();
   }, []);
 
+  //Only show featured projects on the homepage
+  const featuredProjects = projects.filter((project) => project.featured);
+
   return (
     <section id="work" className="section works-section" ref={sectionRef}>
       <div className="content-container">
@@ -51,7 +53,7 @@ export default function SelectedWorks() {
           SELECTED WORKS
         </h2>
 
-        {projects.map((project, index) => {
+        {featuredProjects.map((project, index) => {
           const isReversed = index % 2 === 1;
 
           return (

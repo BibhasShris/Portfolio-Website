@@ -7,7 +7,7 @@ export default function GraphicDesign() {
 
   return (
     <main className="page">
-      <section className="section">
+      <section className="section works-section">
         <div className="content-container">
           <h1 className="section-title section-title-centered">
             Graphic Design
@@ -23,7 +23,6 @@ export default function GraphicDesign() {
                     "project-row" + (isReversed ? " project-row-reverse" : "")
                   }
                 >
-                  {/* IMAGE */}
                   <div className="project-image">
                     <img
                       src={project.image}
@@ -32,7 +31,6 @@ export default function GraphicDesign() {
                     />
                   </div>
 
-                  {/* TEXT */}
                   <div className="project-text">
                     <h3 className="project-title">{project.title}</h3>
                     <p className="body-text">{project.description}</p>
