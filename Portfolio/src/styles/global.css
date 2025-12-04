@@ -59,6 +59,7 @@ body {
   display: flex;
   gap: 18px;
   align-items: center;
+  flex: 1;
 }
 
 .nav-center {

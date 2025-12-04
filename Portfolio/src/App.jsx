@@ -5,6 +5,7 @@ import GraphicDesign from "./pages/GraphicDesign";
 import UIUX from "./pages/UIUX";
 import Photography from "./pages/Photography";
 import Videography from "./pages/Videography";
+import Contact from "./pages/Contact";
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
         <Route path="/ui-ux" element={<UIUX />} />
         <Route path="/photography" element={<Photography />} />
         <Route path="/videography" element={<Videography />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
     </div>
   );

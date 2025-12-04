@@ -1,18 +1,48 @@
+import { projects } from "../data/projects";
+
 export default function UIUX() {
+  const uiuxProjects = projects.filter(
+    (project) => project.category === "uiux"
+  );
+
   return (
     <main className="page">
       <section className="section">
         <div className="content-container">
-          <h1 className="section-title">UI / UX</h1>
-          <p className="body-text">
-            This page will highlight your UI/UX work — case studies, prototypes,
-            flows, and redesigns.
-          </p>
+          <h1 className="section-title section-title-centered">UI / UX</h1>
 
-          <p className="body-text">
-            You can later add projects like your Prime Video concept, app
-            designs, and process breakdowns here.
-          </p>
+          {uiuxProjects.map((project, index) => {
+            const isReversed = index % 2 === 1;
+
+            return (
+              <div key={project.id} className="project-card">
+                <div
+                  className={
+                    "project-row" + (isReversed ? " project-row-reverse" : "")
+                  }
+                >
+                  <div className="project-image">
+                    <img
+                      src={project.image}
+                      alt={project.imageAlt}
+                      className="project-img-el"
+                    />
+                  </div>
+
+                  <div className="project-text">
+                    <h3 className="project-title">{project.title}</h3>
+                    <p className="body-text">{project.description}</p>
+                    <p className="meta-line">
+                      <span className="meta-label">Year:</span> {project.year}
+                    </p>
+                    <p className="meta-line">
+                      <span className="meta-label">Role:</span> {project.role}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </section>
     </main>

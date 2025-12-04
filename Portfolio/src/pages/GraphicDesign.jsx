@@ -1,18 +1,52 @@
+import { projects } from "../data/projects";
+
 export default function GraphicDesign() {
+  const graphicProjects = projects.filter(
+    (project) => project.category === "graphic"
+  );
+
   return (
     <main className="page">
       <section className="section">
         <div className="content-container">
-          <h1 className="section-title">Graphic Design</h1>
-          <p className="body-text">
-            This page will showcase your graphic design projects — posters,
-            event graphics, branding, and layouts.
-          </p>
+          <h1 className="section-title section-title-centered">
+            Graphic Design
+          </h1>
 
-          <p className="body-text">
-            Later, you can bring in specific projects here like Crafternoon,
-            ALTEC posters, and other print or digital designs.
-          </p>
+          {graphicProjects.map((project, index) => {
+            const isReversed = index % 2 === 1;
+
+            return (
+              <div key={project.id} className="project-card">
+                <div
+                  className={
+                    "project-row" + (isReversed ? " project-row-reverse" : "")
+                  }
+                >
+                  {/* IMAGE */}
+                  <div className="project-image">
+                    <img
+                      src={project.image}
+                      alt={project.imageAlt}
+                      className="project-img-el"
+                    />
+                  </div>
+
+                  {/* TEXT */}
+                  <div className="project-text">
+                    <h3 className="project-title">{project.title}</h3>
+                    <p className="body-text">{project.description}</p>
+                    <p className="meta-line">
+                      <span className="meta-label">Year:</span> {project.year}
+                    </p>
+                    <p className="meta-line">
+                      <span className="meta-label">Role:</span> {project.role}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </section>
     </main>
