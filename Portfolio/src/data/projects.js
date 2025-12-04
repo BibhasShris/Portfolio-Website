@@ -2,6 +2,7 @@ import hiveImg from "../assets/The_HIVE.png";
 import primeImg from "../assets/Prime_Video.png";
 import craftImg from "../assets/Crafternoon.png";
 import funkyImg from "../assets/Funky_Buddha.jpg";
+import matchdayPoster from "../assets/CNYC_Poster.png";
 
 export const projects = [
   {
@@ -51,5 +52,16 @@ export const projects = [
       "Photoshoot for The Funky Buddha Bar & Restaurant in Denver, CO. Captured interior, food, and ambiance photography for marketing and menu content. Delivered high-quality images optimized for both print and digital platforms, with enhanced color grading and retouching done in Lightroom and Photoshop.",
     imageAlt: "Funky Buddha Bar & Restaurant photoshoot",
     image: funkyImg,
+  },
+  {
+    id: "matchday",
+    title: "Matchday Poster",
+    description:
+      "Designed a matchday poster for the championship match of the 4th TPLA Cup, featuring Colorado Nepali Youth Club (CNYC) vs. Young Star.",
+    image: matchdayPoster,
+    imageAlt: "Matchday poster for CNYC vs Young Star",
+    year: 2025,
+    role: "Graphic Designer",
+    category: "graphic",
   },
 ];
