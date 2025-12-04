@@ -1,3 +1,4 @@
+import ProjectDetail from "./pages/ProjectDetail";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
@@ -19,6 +20,7 @@ export default function App() {
         <Route path="/photography" element={<Photography />} />
         <Route path="/videography" element={<Videography />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/project/:id" element={<ProjectDetail />} />
       </Routes>
     </div>
   );

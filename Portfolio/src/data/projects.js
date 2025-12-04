@@ -3,6 +3,8 @@ import primeImg from "../assets/Prime_Video.png";
 import crafternoonImg from "../assets/Crafternoon.png";
 import funkyImg from "../assets/Funky_Buddha.jpg";
 import matchdayImg from "../assets/Matchday_Poster.png";
+import heroImg from "../assets/CNYC_Poster.png";
+import Craft1 from "../assets/craft1.jpg";
 
 export const projects = [
   {
@@ -15,6 +17,7 @@ export const projects = [
     featured: true, // show on homepage
     description:
       "Video project highlighting what THE HIVE @ ALTEC represents as a collaborative community space.",
+    detailDescription: "Longer case-study style text...",
     imageAlt: "Video still from The HIVE project",
     image: hiveImg,
   },
@@ -41,6 +44,9 @@ export const projects = [
     featured: true,
     description:
       "Poster design created for the annual ALTEC event at the University of Colorado Boulder. The event promotes cultural awareness through fun, hands-on crafting and language activities.",
+    detailDescription:
+      "I work as a Graphic Designer for ALTEC which stands for The Anderson Language and Technology Center. \nPoster design created for the annual ALTEC event at the University of Colorado Boulder. The event promotes cultural awareness through fun, hands-on crafting and language activities.",
+    detailImage: Craft1,
     imageAlt: "Crafternoon event poster",
     image: crafternoonImg,
   },
@@ -67,6 +73,7 @@ export const projects = [
     featured: false, //don't show on homepage
     description:
       "Designed a matchday poster for the championship match of the 4th TPLA Cup, featuring Colorado Nepali Youth Club (CNYC) vs. Young Star.",
+    detailImage: heroImg,
     imageAlt: "Matchday poster for the 4th TPLA Cup",
     image: matchdayImg,
   },
