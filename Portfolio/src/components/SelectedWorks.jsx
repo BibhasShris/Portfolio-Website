@@ -1,4 +1,4 @@
-// src/components/SelectedWorks.jsx
+import { Link } from "react-router-dom";
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -11,7 +11,7 @@ export default function SelectedWorks() {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      // 👇 TITLE SCROLL ANIMATION
+      //TITLE SCROLL ANIMATION
       gsap.from(".works-title", {
         opacity: 0,
         y: 40,
@@ -19,11 +19,11 @@ export default function SelectedWorks() {
         ease: "power3.out",
         scrollTrigger: {
           trigger: ".works-title",
-          start: "top 85%", // when title gets near viewport bottom
+          start: "top 85%",
         },
       });
 
-      // 👇 PROJECT CARD ANIMATIONS (your existing logic)
+      //PROJECT CARD ANIMATIONS
       gsap.utils.toArray(".project-card").forEach((card, index) => {
         gsap.from(card, {
           opacity: 0,
@@ -43,46 +43,55 @@ export default function SelectedWorks() {
     return () => ctx.revert();
   }, []);
 
+  // Only show featured projects on the homepage
+  const featuredProjects = projects.filter((project) => project.featured);
+
   return (
     <section id="work" className="section works-section" ref={sectionRef}>
       <div className="content-container">
-        {/* add works-title class so GSAP can target it */}
         <h2 className="section-title section-title-centered works-title">
           SELECTED WORKS
         </h2>
 
-        {projects.map((project, index) => {
+        {featuredProjects.map((project, index) => {
           const isReversed = index % 2 === 1;
 
           return (
-            <div key={project.id} className="project-card">
-              <div
-                className={
-                  "project-row" + (isReversed ? " project-row-reverse" : "")
-                }
-              >
-                {/* IMAGE */}
-                <div className="project-image">
-                  <img
-                    src={project.image}
-                    alt={project.imageAlt}
-                    className="project-img-el"
-                  />
-                </div>
+            <Link
+              key={project.id}
+              to={`/project/${project.id}`}
+              className="project-card-link"
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              <div className="project-card">
+                <div
+                  className={
+                    "project-row" + (isReversed ? " project-row-reverse" : "")
+                  }
+                >
+                  {/* IMAGE */}
+                  <div className="project-image">
+                    <img
+                      src={project.image}
+                      alt={project.imageAlt}
+                      className="project-img-el"
+                    />
+                  </div>
 
-                {/* TEXT */}
-                <div className="project-text">
-                  <h3 className="project-title">{project.title}</h3>
-                  <p className="body-text">{project.description}</p>
-                  <p className="meta-line">
-                    <span className="meta-label">Year:</span> {project.year}
-                  </p>
-                  <p className="meta-line">
-                    <span className="meta-label">Role:</span> {project.role}
-                  </p>
+                  {/* TEXT */}
+                  <div className="project-text">
+                    <h3 className="project-title">{project.title}</h3>
+                    <p className="body-text">{project.description}</p>
+                    <p className="meta-line">
+                      <span className="meta-label">Year:</span> {project.year}
+                    </p>
+                    <p className="meta-line">
+                      <span className="meta-label">Role:</span> {project.role}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
+            </Link>
           );
         })}
       </div>

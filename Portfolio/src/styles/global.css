@@ -294,6 +294,14 @@ body {
   margin-right: 4px;
 }
 
+.project-card-link {
+  display: block;
+}
+
+.project-card {
+  cursor: pointer;
+}
+
 /* ---------- SIMPLE RESPONSIVE BEHAVIOR ---------- */
 @media (max-width: 900px) {
   .about-layout {
