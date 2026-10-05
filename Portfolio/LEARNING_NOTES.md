@@ -90,6 +90,7 @@
 - Bibhas accepted the animated title underline. Implemented a thin gold line that draws left-to-right over 300ms on hover/keyboard focus and retracts on leave. Space is reserved beneath the title to avoid layout shifts; reduced-motion preference makes it instant. Existing GSAP animation remains unchanged.
 
 ## Learning resume point (paused)
+- Deployment follow-up: live domain is bibhasshris.com (redirects to www). Homepage returned HTTP 200 while /photography returned Vercel NOT_FOUND 404 on direct requests. Added Portfolio/vercel.json with Vercel's documented SPA rewrite to /index.html, so React Router can resolve shared/deep links. This is a hosting route issue, not phone-specific.
 - Photography covers now use the same 18px rounded corners as homepage project images; the gold border inherits that radius.
 - Await Bibhas's first read-only exercise: open index.html and identify (1) the id of the container React uses and (2) the file loaded by the script tag.
 - Review the answer before advancing. Then explain main.jsx imports and its render call in small pieces, introducing each unfamiliar term.
