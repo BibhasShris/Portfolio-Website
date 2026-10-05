@@ -1,4 +1,5 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import PhotographyDetail from "../components/PhotographyDetail";
 import { projects } from "../data/projects";
 
 export default function ProjectDetail() {
@@ -15,6 +16,10 @@ export default function ProjectDetail() {
         </section>
       </main>
     );
+  }
+
+  if (project.category === "photography") {
+    return <PhotographyDetail project={project} />;
   }
 
   // use detail fields if they exist, otherwise fall back

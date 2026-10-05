@@ -1,6 +1,28 @@
-import { Link } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Navbar() {
+  const { key: routeKey } = useLocation();
+  const [openForRoute, setOpenForRoute] = useState(null);
+  const workRef = useRef(null);
+  const workButtonRef = useRef(null);
+  const isWorkOpen = openForRoute === routeKey;
+
+  useEffect(() => {
+    if (!isWorkOpen) return;
+    const closeOutside = (event) => {
+      if (!workRef.current?.contains(event.target)) setOpenForRoute(null);
+    };
+    document.addEventListener("pointerdown", closeOutside);
+    return () => document.removeEventListener("pointerdown", closeOutside);
+  }, [isWorkOpen]);
+
+  const selectWork = () => {
+    setOpenForRoute(null);
+    // Do not leave keyboard focus inside the now-hidden panel.
+    workButtonRef.current?.focus();
+  };
+
   return (
     <header className="nav-wrapper">
       <nav className="nav">
@@ -11,22 +33,53 @@ export default function Navbar() {
           </Link>
 
           {/* WORK DROPDOWN */}
-          <div className="nav-item nav-work">
-            <button className="nav-link nav-link-work">
+          <div
+            className="nav-item nav-work"
+            ref={workRef}
+            onPointerEnter={(event) => {
+              if (event.pointerType === "mouse") setOpenForRoute(routeKey);
+            }}
+            onPointerLeave={(event) => {
+              if (event.pointerType === "mouse") setOpenForRoute(null);
+            }}
+            onBlur={(event) => {
+              if (!event.currentTarget.contains(event.relatedTarget)) setOpenForRoute(null);
+            }}
+            onKeyDown={(event) => {
+              if (event.key === "Escape") {
+                event.preventDefault();
+                selectWork();
+              }
+            }}
+          >
+            <button
+              type="button"
+              ref={workButtonRef}
+              className="nav-link nav-link-work"
+              aria-expanded={isWorkOpen}
+              aria-controls="work-dropdown"
+              onClick={() => setOpenForRoute(isWorkOpen ? null : routeKey)}
+              onKeyDown={(event) => {
+                if (event.key === "ArrowDown") {
+                  event.preventDefault();
+                  setOpenForRoute(routeKey);
+                }
+              }}
+            >
               Work <span className="nav-link-caret">▾</span>
             </button>
 
-            <div className="nav-dropdown">
-              <Link to="/graphic-design" className="dropdown-link">
+            <div id="work-dropdown" className={`nav-dropdown${isWorkOpen ? " is-open" : ""}`}>
+              <Link to="/graphic-design" className="dropdown-link" onClick={selectWork}>
                 Graphic Design
               </Link>
-              <Link to="/ui-ux" className="dropdown-link">
+              <Link to="/ui-ux" className="dropdown-link" onClick={selectWork}>
                 UI / UX
               </Link>
-              <Link to="/photography" className="dropdown-link">
+              <Link to="/photography" className="dropdown-link" onClick={selectWork}>
                 Photography
               </Link>
-              <Link to="/videography" className="dropdown-link">
+              <Link to="/videography" className="dropdown-link" onClick={selectWork}>
                 Videography
               </Link>
             </div>
